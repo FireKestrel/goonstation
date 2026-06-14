@@ -288,6 +288,7 @@ ABSTRACT_TYPE(/datum/job/special)
 
 	items_in_backpack = list(\
 	/obj/item/currency/buttcoin,
+	/obj/item/card/id/fakecard,
 	/obj/item/currency/spacecash/fivehundred)
 
 	New()

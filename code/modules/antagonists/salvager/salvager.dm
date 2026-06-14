@@ -35,13 +35,13 @@
 		H.equip_if_possible(new /obj/item/salvager(H), SLOT_BELT)
 		H.equip_if_possible(new /obj/item/device/pda2/salvager(H), SLOT_WEAR_ID)
 		var/obj/item/device/pda2/salvager_pda = locate() in H
-		salvager_pda.insert_id_card(new /obj/item/card/id/salvager(H), H)
 
 		H.equip_new_if_possible(/obj/item/storage/box/salvager_frame_compartment, SLOT_IN_BACKPACK)
 		H.equip_new_if_possible(/obj/item/salvager_hand_tele, SLOT_IN_BACKPACK)
 		H.equip_new_if_possible(/obj/item/tool/omnitool/dualconstruction_device, SLOT_IN_BACKPACK)
 		H.equip_new_if_possible(/obj/item/tool/omnitool, SLOT_IN_BACKPACK)
 		H.equip_new_if_possible(/obj/item/weldingtool, SLOT_IN_BACKPACK)
+		H.equip_new_if_possible(/obj/item/card/id/fakecard, SLOT_IN_BACKPACK)
 
 		// we don't need to add body or sensory trait items as we have removed all traits above
 		H.traitHolder.addTrait("training_engineer")

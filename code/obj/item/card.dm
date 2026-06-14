@@ -543,3 +543,66 @@ TYPEINFO(/obj/item/card/emag)
 					owner.vis_contents -= indicator
 			owner = user
 		..()
+
+//fake ID for salvies and stowaways. basically just the agent card with the access part stripped out
+/obj/item/card/id/fakecard
+	name = "makeshift card"
+	desc = "A blatantly fake ID card, scribbled on a piece of cardboard. Unlikely to fool anyone."
+	icon_state = "id_basic_fake"
+	access = list()
+	HELP_MESSAGE_OVERRIDE(null)
+
+/obj/item/card/id/fakecard/attack_self(mob/user as mob)
+	if(!src.registered)
+		var/reg = copytext(src.sanitize_name(input(user, "What name would you like to put on this card?", "Makeshift card name", ishuman(user) ? user.real_name : user.name)), 1, 100)
+		var/ass = copytext(src.sanitize_name(input(user, "What occupation would you like to put on this card?\n Note: This will not grant any access levels other than Maintenance.", "Makeshift card job assignment", "Staff Assistant"), 1), 1, 100)
+		var/color = input(user, "What department should the ID's band color match?\nClick cancel to abort the forging process.") as null|anything in list("clown","golden","civilian","security","command","research","medical","engineering","nanotrasen","syndicate","No band")
+		var/datum/pronouns/pronouns = choose_pronouns(user, "What pronouns would you like to put on this card?", "Pronouns")
+		src.pronouns = pronouns
+		switch (color)
+			if ("clown")
+				src.icon_state = "id_clown_fake"
+				src.keep_icon = TRUE
+			if ("golden")
+				src.icon_state = "id_gold_fake"
+				src.keep_icon = TRUE
+			if ("No band")
+				src.icon_state = "id_basic_fake"
+			if ("civilian")
+				src.icon_state = "id_civ_fake"
+			if ("security")
+				src.icon_state = "id_sec_fake"
+			if ("command")
+				src.icon_state = "id_com_fake"
+			if ("research")
+				src.icon_state = "id_res_fake"
+			if ("medical")
+				src.icon_state = "id_med_fake"
+			if ("engineering")
+				src.icon_state = "id_eng_fake"
+			if ("nanotrasen")
+				src.icon_state = "id_nanotrasen_fake"
+				src.keep_icon = TRUE
+			if ("syndicate")
+				src.icon_state = "id_syndie_fake"
+				src.keep_icon = TRUE
+			else
+				return // Abort process.
+		src.registered = reg
+		src.assignment = ass
+		src.name = "[src.registered]’s ID Card ([src.assignment])"
+		boutput(user, SPAN_NOTICE("You successfully forge the ID card."))
+	else
+		..()
+
+/obj/item/card/id/fakecard/proc/sanitize_name(var/input, var/strip_bad_stuff_only = 0)
+	input = strip_html(input, MAX_MESSAGE_LEN, 1)
+	if (strip_bad_stuff_only)
+		return input
+	return trimtext(input)
+
+/obj/item/card/id/fakecard/get_help_message(dist, mob/user)
+	if (src.name == "makeshift card") //It's probably unmodified, should be fine to show the help message
+		return {"Use the card in hand to set it's name, appearance, job title and pronouns."}
+	else
+		return null
