@@ -33,7 +33,6 @@
 		H.equip_new_if_possible(/obj/item/clothing/glasses/salvager, SLOT_GLASSES)
 		H.equip_new_if_possible(/obj/item/clothing/shoes/magnetic, SLOT_SHOES)
 		H.equip_new_if_possible(/obj/item/device/pda2/salvager, SLOT_WEAR_ID)
-		var/obj/item/device/pda2/salvager_pda = locate() in H
 
 		//Obvious Salvager-only gear below:
 		H.equip_new_if_possible(/obj/item/device/radio/headset/salvager, SLOT_EARS)
