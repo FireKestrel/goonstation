@@ -549,6 +549,7 @@ TYPEINFO(/obj/item/card/emag)
 	name = "makeshift card"
 	desc = "A blatantly fake ID card, scribbled on a piece of cardboard. Unlikely to fool anyone."
 	icon_state = "id_basic_fake"
+	keep_icon = TRUE
 	access = list()
 	HELP_MESSAGE_OVERRIDE(null)
 
@@ -562,10 +563,8 @@ TYPEINFO(/obj/item/card/emag)
 		switch (color)
 			if ("clown")
 				src.icon_state = "id_clown_fake"
-				src.keep_icon = TRUE
 			if ("golden")
 				src.icon_state = "id_gold_fake"
-				src.keep_icon = TRUE
 			if ("No band")
 				src.icon_state = "id_basic_fake"
 			if ("civilian")
@@ -582,10 +581,8 @@ TYPEINFO(/obj/item/card/emag)
 				src.icon_state = "id_eng_fake"
 			if ("nanotrasen")
 				src.icon_state = "id_nanotrasen_fake"
-				src.keep_icon = TRUE
 			if ("syndicate")
 				src.icon_state = "id_syndie_fake"
-				src.keep_icon = TRUE
 			else
 				return // Abort process.
 		src.registered = reg
